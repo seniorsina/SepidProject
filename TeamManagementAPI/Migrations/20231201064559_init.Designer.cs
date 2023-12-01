@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TeamManagementAPI.Migrations
 {
     [DbContext(typeof(TeamDbContext))]
-    [Migration("20231130212525_init")]
+    [Migration("20231201064559_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -83,8 +83,8 @@ namespace TeamManagementAPI.Migrations
 
                     b.Property<string>("EstablishmentِDate")
                         .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("FirstColor")
                         .IsRequired()

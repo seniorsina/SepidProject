@@ -32,7 +32,7 @@ namespace TeamManagementAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EstablishmentِDate = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    EstablishmentِDate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     TeamType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Grade = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstColor = table.Column<string>(type: "nvarchar(max)", nullable: false),

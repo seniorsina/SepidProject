@@ -15,8 +15,8 @@ public class Team
     public int Id { get; set; }
     [Required(ErrorMessage = "وارد کردن نام تیم الزامی  می باشد")]
     public string Name { get; set; }
-    [MaxLength(12)]
-    [MinLength(12)]
+    [MaxLength(10)]
+    [MinLength(10)]
     public string EstablishmentِDate { get; set; }
     public string TeamType { get; set; }
 

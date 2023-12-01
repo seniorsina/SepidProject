@@ -80,8 +80,8 @@ namespace TeamManagementAPI.Migrations
 
                     b.Property<string>("EstablishmentِDate")
                         .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("FirstColor")
                         .IsRequired()

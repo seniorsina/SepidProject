@@ -30,23 +30,23 @@ partial class AddTeamForm
     {
         components = new System.ComponentModel.Container();
         panel1 = new Panel();
+        label7 = new Label();
+        ritxtDescription = new RichTextBox();
+        cmbSecondColor = new ComboBox();
+        label6 = new Label();
+        cmbFirstColor = new ComboBox();
+        label5 = new Label();
+        cmbGrade = new ComboBox();
+        label4 = new Label();
+        label3 = new Label();
+        cmbTeamType = new ComboBox();
+        label2 = new Label();
         mtxtCreateDate = new MaskedTextBox();
         label1 = new Label();
         txtTeamName = new TextBox();
         panel2 = new Panel();
-        errorProvider = new ErrorProvider(components);
-        label2 = new Label();
-        cmbTeamType = new ComboBox();
-        label3 = new Label();
-        label4 = new Label();
-        cmbGrade = new ComboBox();
-        label5 = new Label();
-        cmbFirstColor = new ComboBox();
-        cmbSecondColor = new ComboBox();
-        label6 = new Label();
-        ritxtDescription = new RichTextBox();
-        label7 = new Label();
         btnSave = new Button();
+        errorProvider = new ErrorProvider(components);
         panel1.SuspendLayout();
         panel2.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
@@ -75,6 +75,107 @@ partial class AddTeamForm
         panel1.Name = "panel1";
         panel1.Size = new Size(514, 223);
         panel1.TabIndex = 0;
+        panel1.Paint += panel1_Paint;
+        // 
+        // label7
+        // 
+        label7.AutoSize = true;
+        label7.Location = new Point(417, 110);
+        label7.Name = "label7";
+        label7.Size = new Size(57, 15);
+        label7.TabIndex = 13;
+        label7.Text = "توضیحات:";
+        // 
+        // ritxtDescription
+        // 
+        ritxtDescription.Location = new Point(4, 110);
+        ritxtDescription.Name = "ritxtDescription";
+        ritxtDescription.Size = new Size(412, 54);
+        ritxtDescription.TabIndex = 12;
+        ritxtDescription.Text = "";
+        // 
+        // cmbSecondColor
+        // 
+        cmbSecondColor.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbSecondColor.FormattingEnabled = true;
+        cmbSecondColor.Location = new Point(4, 81);
+        cmbSecondColor.Name = "cmbSecondColor";
+        cmbSecondColor.Size = new Size(159, 23);
+        cmbSecondColor.TabIndex = 11;
+        // 
+        // label6
+        // 
+        label6.AutoSize = true;
+        label6.Location = new Point(164, 84);
+        label6.Name = "label6";
+        label6.Size = new Size(79, 15);
+        label6.TabIndex = 10;
+        label6.Text = "رنگ لباس دوم:";
+        // 
+        // cmbFirstColor
+        // 
+        cmbFirstColor.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbFirstColor.FormattingEnabled = true;
+        cmbFirstColor.Location = new Point(257, 78);
+        cmbFirstColor.Name = "cmbFirstColor";
+        cmbFirstColor.Size = new Size(159, 23);
+        cmbFirstColor.TabIndex = 9;
+        // 
+        // label5
+        // 
+        label5.AutoSize = true;
+        label5.Location = new Point(417, 81);
+        label5.Name = "label5";
+        label5.Size = new Size(89, 15);
+        label5.TabIndex = 8;
+        label5.Text = "رنگ لباس اصلی:";
+        label5.Click += label5_Click;
+        // 
+        // cmbGrade
+        // 
+        cmbGrade.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbGrade.FormattingEnabled = true;
+        cmbGrade.Location = new Point(4, 45);
+        cmbGrade.Name = "cmbGrade";
+        cmbGrade.Size = new Size(159, 23);
+        cmbGrade.TabIndex = 7;
+        // 
+        // label4
+        // 
+        label4.AutoSize = true;
+        label4.Location = new Point(164, 48);
+        label4.Name = "label4";
+        label4.Size = new Size(26, 15);
+        label4.TabIndex = 6;
+        label4.Text = "رده:";
+        // 
+        // label3
+        // 
+        label3.AutoSize = true;
+        label3.Location = new Point(417, 45);
+        label3.Name = "label3";
+        label3.Size = new Size(45, 15);
+        label3.TabIndex = 5;
+        label3.Text = "نوع تیم:";
+        // 
+        // cmbTeamType
+        // 
+        cmbTeamType.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbTeamType.FormattingEnabled = true;
+        cmbTeamType.Location = new Point(257, 42);
+        cmbTeamType.Name = "cmbTeamType";
+        cmbTeamType.Size = new Size(159, 23);
+        cmbTeamType.TabIndex = 4;
+        // 
+        // label2
+        // 
+        label2.AutoSize = true;
+        label2.Location = new Point(164, 12);
+        label2.Name = "label2";
+        label2.Size = new Size(72, 15);
+        label2.TabIndex = 3;
+        label2.Text = "تاریخ تاسیس:";
+        label2.Click += label2_Click;
         // 
         // mtxtCreateDate
         // 
@@ -111,106 +212,6 @@ partial class AddTeamForm
         panel2.Size = new Size(514, 53);
         panel2.TabIndex = 1;
         // 
-        // errorProvider
-        // 
-        errorProvider.ContainerControl = this;
-        // 
-        // label2
-        // 
-        label2.AutoSize = true;
-        label2.Location = new Point(164, 12);
-        label2.Name = "label2";
-        label2.Size = new Size(72, 15);
-        label2.TabIndex = 3;
-        label2.Text = "تاریخ تاسیس:";
-        label2.Click += label2_Click;
-        // 
-        // cmbTeamType
-        // 
-        cmbTeamType.FormattingEnabled = true;
-        cmbTeamType.Location = new Point(257, 42);
-        cmbTeamType.Name = "cmbTeamType";
-        cmbTeamType.Size = new Size(159, 23);
-        cmbTeamType.TabIndex = 4;
-        // 
-        // label3
-        // 
-        label3.AutoSize = true;
-        label3.Location = new Point(417, 45);
-        label3.Name = "label3";
-        label3.Size = new Size(45, 15);
-        label3.TabIndex = 5;
-        label3.Text = "نوع تیم:";
-        // 
-        // label4
-        // 
-        label4.AutoSize = true;
-        label4.Location = new Point(164, 48);
-        label4.Name = "label4";
-        label4.Size = new Size(26, 15);
-        label4.TabIndex = 6;
-        label4.Text = "رده:";
-        // 
-        // cmbGrade
-        // 
-        cmbGrade.FormattingEnabled = true;
-        cmbGrade.Location = new Point(4, 45);
-        cmbGrade.Name = "cmbGrade";
-        cmbGrade.Size = new Size(159, 23);
-        cmbGrade.TabIndex = 7;
-        // 
-        // label5
-        // 
-        label5.AutoSize = true;
-        label5.Location = new Point(417, 81);
-        label5.Name = "label5";
-        label5.Size = new Size(89, 15);
-        label5.TabIndex = 8;
-        label5.Text = "رنگ لباس اصلی:";
-        label5.Click += label5_Click;
-        // 
-        // cmbFirstColor
-        // 
-        cmbFirstColor.FormattingEnabled = true;
-        cmbFirstColor.Location = new Point(257, 78);
-        cmbFirstColor.Name = "cmbFirstColor";
-        cmbFirstColor.Size = new Size(159, 23);
-        cmbFirstColor.TabIndex = 9;
-        // 
-        // cmbSecondColor
-        // 
-        cmbSecondColor.FormattingEnabled = true;
-        cmbSecondColor.Location = new Point(4, 81);
-        cmbSecondColor.Name = "cmbSecondColor";
-        cmbSecondColor.Size = new Size(159, 23);
-        cmbSecondColor.TabIndex = 11;
-        // 
-        // label6
-        // 
-        label6.AutoSize = true;
-        label6.Location = new Point(164, 84);
-        label6.Name = "label6";
-        label6.Size = new Size(79, 15);
-        label6.TabIndex = 10;
-        label6.Text = "رنگ لباس دوم:";
-        // 
-        // ritxtDescription
-        // 
-        ritxtDescription.Location = new Point(4, 110);
-        ritxtDescription.Name = "ritxtDescription";
-        ritxtDescription.Size = new Size(412, 54);
-        ritxtDescription.TabIndex = 12;
-        ritxtDescription.Text = "";
-        // 
-        // label7
-        // 
-        label7.AutoSize = true;
-        label7.Location = new Point(417, 110);
-        label7.Name = "label7";
-        label7.Size = new Size(57, 15);
-        label7.TabIndex = 13;
-        label7.Text = "توضیحات:";
-        // 
         // btnSave
         // 
         btnSave.Dock = DockStyle.Left;
@@ -225,6 +226,11 @@ partial class AddTeamForm
         btnSave.Text = "ذخیره";
         btnSave.TextImageRelation = TextImageRelation.ImageAboveText;
         btnSave.UseVisualStyleBackColor = true;
+        btnSave.Click += btnSave_Click;
+        // 
+        // errorProvider
+        // 
+        errorProvider.ContainerControl = this;
         // 
         // AddTeamForm
         // 
@@ -236,6 +242,7 @@ partial class AddTeamForm
         Name = "AddTeamForm";
         RightToLeft = RightToLeft.Yes;
         Text = "تیم جدید";
+        Load += AddTeamForm_Load;
         panel1.ResumeLayout(false);
         panel1.PerformLayout();
         panel2.ResumeLayout(false);

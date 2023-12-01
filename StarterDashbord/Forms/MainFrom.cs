@@ -6,13 +6,12 @@ namespace StarterDashbord;
 
 public partial class MainFrom : Form
 {
-    private ApiClient apiClient;
+
     public MainFrom()
     {
         InitializeComponent();
         this.dgvTeam.MouseWheel += new MouseEventHandler(this.dvg_MouseWheel);
 
-        apiClient = new ApiClient("https://localhost:44366/api");
     }
 
     private void ClearPanel()
@@ -33,7 +32,6 @@ public partial class MainFrom : Form
         form.Show();
         this.pnlFormLoader.Controls.Add(form);
     }
-
 
     private void btnDashboard_Leave(object sender, EventArgs e)
     {
@@ -67,7 +65,6 @@ public partial class MainFrom : Form
     private void btnDashboard_Click(object sender, EventArgs e)
     {
 
-
     }
 
     private void pnlFormLoader_Paint(object sender, PaintEventArgs e)
@@ -77,10 +74,14 @@ public partial class MainFrom : Form
 
     private async void MainFrom_Load(object sender, EventArgs e)
     {
-        dgvTeam.SelectionChanged -= dgvTeam_SelectionChanged;
-        string endpoint = "/team"; // Replace with your endpoint
+        LoadTeamList();
+    }
 
-        var data = await apiClient.GetAsync<List<Team>>(endpoint);
+    private async void LoadTeamList()
+    {
+        dgvTeam.SelectionChanged -= dgvTeam_SelectionChanged;
+        string endpoint = "/team";
+        var data = await Global.ApiClient.GetAsync<List<Team>>(endpoint);
 
         dgvTeam.DataSource = data;
         SetTeamGridHeader(dgvTeam);
@@ -107,6 +108,7 @@ public partial class MainFrom : Form
         }
 
         dataGridView.Columns["players"].Visible = false;
+        dataGridView.Columns["description"].Visible = false;
     }
 
     private void dgvTeam_SelectionChanged(object sender, EventArgs e)
@@ -126,8 +128,78 @@ public partial class MainFrom : Form
 
     private void btnAddTeam_Click(object sender, EventArgs e)
     {
-        AddTeamForm addTeamFrom = new AddTeamForm();
+        AddTeamForm addTeamFrom = new AddTeamForm()
+        {
+            IsEditting = false,
+            Text = "تیم جدید",
+            StartPosition = FormStartPosition.CenterParent
+        };
+
         addTeamFrom.ShowDialog();
+        LoadTeamList();
+    }
+
+    private void btnEditTeam_Click(object sender, EventArgs e)
+    {
+        var t = GetSelectedTeam(dgvTeam);
+        AddTeamForm editTeamFrom = new AddTeamForm(t)
+        {
+            IsEditting = true,
+            Text = "ویرایش تیم",
+            StartPosition = FormStartPosition.CenterParent
+        };
+        editTeamFrom.ShowDialog();
+        LoadTeamList();
+
+    }
+
+    private Team GetSelectedTeam(DataGridView dataGridView)
+    {
+        if (dataGridView.SelectedRows.Count == 0)
+        {
+            return null;
+        }
+
+        var selectedRow = dataGridView.SelectedRows[0];
+
+        Team team = new Team()
+        {
+            Id = Convert.ToInt32(selectedRow.Cells["Id"].Value),
+            Name = selectedRow.Cells["Name"].Value.ToString(),
+            EstablishmentِDate = selectedRow.Cells["EstablishmentِDate"].Value.ToString(),
+            TeamType = selectedRow.Cells["TeamType"].Value.ToString(),
+            Grade = selectedRow.Cells["Grade"].Value.ToString(),
+            FirstColor = selectedRow.Cells["FirstColor"].Value.ToString(),
+            SecondColor = selectedRow.Cells["SecondColor"].Value.ToString(),
+            Description = selectedRow.Cells["Description"].Value == null ? null : selectedRow.Cells["Description"].Value.ToString(),
+
+            Players = new List<Player>()
+        };
+
+        return team;
+    }
+
+    private async void btnDeleteTeam_Click(object sender, EventArgs e)
+    {
+        if (dgvTeam.SelectedRows.Count > 0)
+        {
+            var selectedTeamId = dgvTeam.SelectedRows[0].Cells["Id"].Value;
+            var response = await Global.ApiClient.DeleteAsync($"/team/{selectedTeamId}");
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("تیم با موفقیت حذف شد");
+                LoadTeamList();
+
+            }
+            else
+            {
+                MessageBox.Show("هنگام حذف تیم خطایی رخ داد.");
+            }
+        }
+        else
+        {
+            MessageBox.Show("هیچ تیمی انتخاب نشده است");
+        }
     }
 }
 

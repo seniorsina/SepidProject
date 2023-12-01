@@ -35,24 +35,24 @@ partial class MainFrom
         pictureBox1 = new PictureBox();
         pnlFormLoader = new Panel();
         splitContainer1 = new SplitContainer();
+        dgvTeam = new DataGridView();
         panel1 = new Panel();
         grbTeam = new GroupBox();
         ritxtTeamDescription = new RichTextBox();
         panel2 = new Panel();
-        dgvTeam = new DataGridView();
+        btnDeleteTeam = new Button();
+        btnEditTeam = new Button();
         btnAddTeam = new Button();
-        button1 = new Button();
-        button2 = new Button();
         topPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
         pnlFormLoader.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
         splitContainer1.Panel1.SuspendLayout();
         splitContainer1.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)dgvTeam).BeginInit();
         panel1.SuspendLayout();
         grbTeam.SuspendLayout();
         panel2.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)dgvTeam).BeginInit();
         SuspendLayout();
         // 
         // topPanel
@@ -108,16 +108,30 @@ partial class MainFrom
         // 
         // splitContainer1.Panel1
         // 
-        splitContainer1.Panel1.Controls.Add(panel1);
         splitContainer1.Panel1.Controls.Add(dgvTeam);
+        splitContainer1.Panel1.Controls.Add(panel1);
         splitContainer1.Panel1.RightToLeft = RightToLeft.Yes;
+        splitContainer1.Panel1MinSize = 500;
         // 
         // splitContainer1.Panel2
         // 
         splitContainer1.Panel2.RightToLeft = RightToLeft.Yes;
         splitContainer1.Size = new Size(959, 440);
-        splitContainer1.SplitterDistance = 319;
+        splitContainer1.SplitterDistance = 500;
         splitContainer1.TabIndex = 0;
+        // 
+        // dgvTeam
+        // 
+        dgvTeam.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dgvTeam.Dock = DockStyle.Fill;
+        dgvTeam.Location = new Point(0, 0);
+        dgvTeam.MultiSelect = false;
+        dgvTeam.Name = "dgvTeam";
+        dgvTeam.RowTemplate.Height = 25;
+        dgvTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvTeam.Size = new Size(500, 324);
+        dgvTeam.TabIndex = 4;
+        dgvTeam.SelectionChanged += dgvTeam_SelectionChanged;
         // 
         // panel1
         // 
@@ -126,7 +140,7 @@ partial class MainFrom
         panel1.Dock = DockStyle.Bottom;
         panel1.Location = new Point(0, 324);
         panel1.Name = "panel1";
-        panel1.Size = new Size(319, 116);
+        panel1.Size = new Size(500, 116);
         panel1.TabIndex = 5;
         // 
         // grbTeam
@@ -136,7 +150,7 @@ partial class MainFrom
         grbTeam.ForeColor = SystemColors.ButtonHighlight;
         grbTeam.Location = new Point(0, 10);
         grbTeam.Name = "grbTeam";
-        grbTeam.Size = new Size(319, 57);
+        grbTeam.Size = new Size(500, 57);
         grbTeam.TabIndex = 0;
         grbTeam.TabStop = false;
         grbTeam.Text = "توضیحات";
@@ -146,33 +160,53 @@ partial class MainFrom
         ritxtTeamDescription.Dock = DockStyle.Fill;
         ritxtTeamDescription.Location = new Point(3, 19);
         ritxtTeamDescription.Name = "ritxtTeamDescription";
-        ritxtTeamDescription.Size = new Size(313, 35);
+        ritxtTeamDescription.Size = new Size(494, 35);
         ritxtTeamDescription.TabIndex = 0;
         ritxtTeamDescription.Text = "";
         // 
         // panel2
         // 
         panel2.BackColor = Color.FromArgb(20, 20, 20);
-        panel2.Controls.Add(button2);
-        panel2.Controls.Add(button1);
+        panel2.Controls.Add(btnDeleteTeam);
+        panel2.Controls.Add(btnEditTeam);
         panel2.Controls.Add(btnAddTeam);
         panel2.Dock = DockStyle.Bottom;
         panel2.Location = new Point(0, 67);
         panel2.Name = "panel2";
-        panel2.Size = new Size(319, 49);
+        panel2.Size = new Size(500, 49);
         panel2.TabIndex = 1;
         // 
-        // dgvTeam
+        // btnDeleteTeam
         // 
-        dgvTeam.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dgvTeam.Dock = DockStyle.Fill;
-        dgvTeam.Location = new Point(0, 0);
-        dgvTeam.Name = "dgvTeam";
-        dgvTeam.RowTemplate.Height = 25;
-        dgvTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        dgvTeam.Size = new Size(319, 440);
-        dgvTeam.TabIndex = 4;
-        dgvTeam.SelectionChanged += dgvTeam_SelectionChanged;
+        btnDeleteTeam.Dock = DockStyle.Right;
+        btnDeleteTeam.FlatAppearance.BorderColor = Color.DarkGray;
+        btnDeleteTeam.FlatStyle = FlatStyle.Flat;
+        btnDeleteTeam.ForeColor = SystemColors.ButtonHighlight;
+        btnDeleteTeam.Image = Properties.Resources.remove_user_group_man_man_24px;
+        btnDeleteTeam.Location = new Point(288, 0);
+        btnDeleteTeam.Name = "btnDeleteTeam";
+        btnDeleteTeam.Size = new Size(65, 49);
+        btnDeleteTeam.TabIndex = 2;
+        btnDeleteTeam.Text = "حذف تیم";
+        btnDeleteTeam.TextImageRelation = TextImageRelation.ImageAboveText;
+        btnDeleteTeam.UseVisualStyleBackColor = true;
+        btnDeleteTeam.Click += btnDeleteTeam_Click;
+        // 
+        // btnEditTeam
+        // 
+        btnEditTeam.Dock = DockStyle.Right;
+        btnEditTeam.FlatAppearance.BorderColor = Color.DarkGray;
+        btnEditTeam.FlatStyle = FlatStyle.Flat;
+        btnEditTeam.ForeColor = SystemColors.ButtonHighlight;
+        btnEditTeam.Image = Properties.Resources.edit_user_24px;
+        btnEditTeam.Location = new Point(353, 0);
+        btnEditTeam.Name = "btnEditTeam";
+        btnEditTeam.Size = new Size(82, 49);
+        btnEditTeam.TabIndex = 1;
+        btnEditTeam.Text = "ویرایش تیم";
+        btnEditTeam.TextImageRelation = TextImageRelation.ImageAboveText;
+        btnEditTeam.UseVisualStyleBackColor = true;
+        btnEditTeam.Click += btnEditTeam_Click;
         // 
         // btnAddTeam
         // 
@@ -181,7 +215,7 @@ partial class MainFrom
         btnAddTeam.FlatStyle = FlatStyle.Flat;
         btnAddTeam.ForeColor = SystemColors.ButtonHighlight;
         btnAddTeam.Image = (Image)resources.GetObject("btnAddTeam.Image");
-        btnAddTeam.Location = new Point(254, 0);
+        btnAddTeam.Location = new Point(435, 0);
         btnAddTeam.Name = "btnAddTeam";
         btnAddTeam.Size = new Size(65, 49);
         btnAddTeam.TabIndex = 0;
@@ -189,36 +223,6 @@ partial class MainFrom
         btnAddTeam.TextImageRelation = TextImageRelation.ImageAboveText;
         btnAddTeam.UseVisualStyleBackColor = true;
         btnAddTeam.Click += btnAddTeam_Click;
-        // 
-        // button1
-        // 
-        button1.Dock = DockStyle.Right;
-        button1.FlatAppearance.BorderColor = Color.DarkGray;
-        button1.FlatStyle = FlatStyle.Flat;
-        button1.ForeColor = SystemColors.ButtonHighlight;
-        button1.Image = Properties.Resources.edit_user_24px;
-        button1.Location = new Point(172, 0);
-        button1.Name = "button1";
-        button1.Size = new Size(82, 49);
-        button1.TabIndex = 1;
-        button1.Text = "ویرایش تیم";
-        button1.TextImageRelation = TextImageRelation.ImageAboveText;
-        button1.UseVisualStyleBackColor = true;
-        // 
-        // button2
-        // 
-        button2.Dock = DockStyle.Right;
-        button2.FlatAppearance.BorderColor = Color.DarkGray;
-        button2.FlatStyle = FlatStyle.Flat;
-        button2.ForeColor = SystemColors.ButtonHighlight;
-        button2.Image = Properties.Resources.remove_user_group_man_man_24px;
-        button2.Location = new Point(107, 0);
-        button2.Name = "button2";
-        button2.Size = new Size(65, 49);
-        button2.TabIndex = 2;
-        button2.Text = "حذف تیم";
-        button2.TextImageRelation = TextImageRelation.ImageAboveText;
-        button2.UseVisualStyleBackColor = true;
         // 
         // MainFrom
         // 
@@ -240,10 +244,10 @@ partial class MainFrom
         splitContainer1.Panel1.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
         splitContainer1.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)dgvTeam).EndInit();
         panel1.ResumeLayout(false);
         grbTeam.ResumeLayout(false);
         panel2.ResumeLayout(false);
-        ((System.ComponentModel.ISupportInitialize)dgvTeam).EndInit();
         ResumeLayout(false);
     }
 
@@ -262,6 +266,6 @@ partial class MainFrom
     private Panel panel2;
     private RichTextBox ritxtTeamDescription;
     private Button btnAddTeam;
-    private Button button2;
-    private Button button1;
+    private Button btnDeleteTeam;
+    private Button btnEditTeam;
 }

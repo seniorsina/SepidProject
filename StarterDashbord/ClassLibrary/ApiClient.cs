@@ -26,12 +26,33 @@ internal class ApiClient
         var json = await response.Content.ReadAsStringAsync();
         return JsonConvert.DeserializeObject<T>(json);
     }
-    public async Task PostAsync<T>(string endpoint, T data)
+    public async Task<HttpResponseMessage> PostAsync<T>(string endpoint, T data)
     {
         var json = JsonConvert.SerializeObject(data);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        var response = await client.PostAsync(client + endpoint, content);
+        var response = await client.PostAsync(baseUrl + endpoint, content);
         response.EnsureSuccessStatusCode();
+
+        return response;
+    }
+
+    public async Task<HttpResponseMessage> PutAsync<T>(string endpoint, T data)
+    {
+        var json = JsonConvert.SerializeObject(data);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await client.PutAsync(baseUrl + endpoint, content);
+        response.EnsureSuccessStatusCode();
+
+        return response;
+    }
+
+    public async Task<HttpResponseMessage> DeleteAsync(string endpoint)
+    {
+        var response = await client.DeleteAsync(baseUrl + endpoint);
+        response.EnsureSuccessStatusCode();
+
+        return response;
     }
 }
