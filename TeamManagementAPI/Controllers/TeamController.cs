@@ -96,4 +96,20 @@ public class TeamController : ControllerBase
         }
     }
 
+    [HttpGet("IdAndName")]
+    public IActionResult GetAllTeamIdAndName()
+    {
+        try
+        {
+            var teamList = teamRepository.GetAllTeam(false)
+                .Select(t => new TeamIDandName { Id= t.Id,Name= t.Name })
+                .ToList();
+            return Ok(teamList);
+        }
+        catch
+        {
+            return StatusCode(500);
+        }
+    }
+
 }

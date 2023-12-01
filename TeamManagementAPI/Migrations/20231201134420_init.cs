@@ -72,10 +72,11 @@ namespace TeamManagementAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    ContractStartDate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    ContractEndDate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    ContractStartDate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    ContractEndDate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    SocialNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TeamId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -104,15 +105,15 @@ namespace TeamManagementAPI.Migrations
                 values: new object[,]
                 {
                     { 1, null, "1390/01/01", "قرمز", "لیگ برتر", "تیم 1", "سفید", "فوتبال" },
-                    { 2, null, "1391/02/02", "آبی", "دسته اول", "تیم 2", "سیاه", "بسکتبال" },
+                    { 2, null, "1391/02/02", "آبی", "دسته اول", "تیم 2", "سفید", "بسکتبال" },
                     { 3, null, "1392/03/03", "سفید", "دسته دوم", "تیم 3", "زرد", "والیبال" },
-                    { 4, null, "1393/04/04", "مشکلی", "لیگ برتر", "تیم 4", "نارنجی", "فوتبال" },
-                    { 5, null, "1394/05/05", "صورتی", "دسته اول", "تیم 5", "قهوه ای", "بسکتبال" },
-                    { 6, null, "1395/06/06", "خاکستری", "دسته دوم", "تیم 6", "بنفش", "والیبال" },
-                    { 7, null, "1396/07/07", "سفید", "لیگ برتر", "تیم 7", "قرمز", "هندبال" },
-                    { 8, null, "1397/08/08", "سیاه", "دسته اول", "تیم 8", "آبی", "بسکتبال" },
-                    { 9, null, "1398/09/09", "زرد", "دسته دوم", "تیم 9", "سبز", "والیبال" },
-                    { 10, null, "1399/10/10", "مشکی", "لیگ برتر", "تیم 10", "سبز", "فوتبال" }
+                    { 4, null, "1393/04/04", "قرمز", "لیگ برتر", "تیم 4", "آبی", "فوتبال" },
+                    { 5, null, "1394/05/05", "زرد", "دسته اول", "تیم 5", "مشکی", "بسکتبال" },
+                    { 6, null, "1395/06/06", "مشکی", "دسته دوم", "تیم 6", "قرمز", "والیبال" },
+                    { 7, null, "1396/07/07", "آبی", "لیگ برتر", "تیم 7", "سفید", "هندبال" },
+                    { 8, null, "1397/08/08", "سفید", "دسته اول", "تیم 8", "زرد", "بسکتبال" },
+                    { 9, null, "1398/09/09", "زرد", "دسته دوم", "تیم 9", "آبی", "والیبال" },
+                    { 10, null, "1399/10/10", "مشکی", "لیگ برتر", "تیم 10", "قرمز", "فوتبال" }
                 });
 
             migrationBuilder.InsertData(
@@ -124,7 +125,7 @@ namespace TeamManagementAPI.Migrations
                     { 2, 1, "سفید" },
                     { 3, 1, "آبی" },
                     { 4, 1, "مشکی" },
-                    { 5, 1, "ژرد" },
+                    { 5, 1, "زرد" },
                     { 6, 2, "فوتبال" },
                     { 7, 2, "بسکتبال" },
                     { 8, 2, "والیبال" },

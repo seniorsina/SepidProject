@@ -31,6 +31,7 @@ partial class MainFrom
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrom));
         topPanel = new Panel();
+        label2 = new Label();
         label1 = new Label();
         pictureBox1 = new PictureBox();
         pnlFormLoader = new Panel();
@@ -43,28 +44,52 @@ partial class MainFrom
         btnDeleteTeam = new Button();
         btnEditTeam = new Button();
         btnAddTeam = new Button();
+        dgvPlayers = new DataGridView();
+        groupBox1 = new GroupBox();
+        ritxtPlayerDescription = new RichTextBox();
+        panel3 = new Panel();
+        button3 = new Button();
+        btnEditPlayer = new Button();
+        btnNewPlayer = new Button();
         topPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
         pnlFormLoader.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
         splitContainer1.Panel1.SuspendLayout();
+        splitContainer1.Panel2.SuspendLayout();
         splitContainer1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)dgvTeam).BeginInit();
         panel1.SuspendLayout();
         grbTeam.SuspendLayout();
         panel2.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)dgvPlayers).BeginInit();
+        groupBox1.SuspendLayout();
+        panel3.SuspendLayout();
         SuspendLayout();
         // 
         // topPanel
         // 
         topPanel.BackColor = Color.FromArgb(20, 20, 20);
+        topPanel.Controls.Add(label2);
         topPanel.Controls.Add(label1);
         topPanel.Controls.Add(pictureBox1);
         topPanel.Dock = DockStyle.Top;
         topPanel.Location = new Point(0, 0);
         topPanel.Name = "topPanel";
-        topPanel.Size = new Size(959, 81);
+        topPanel.Size = new Size(959, 53);
         topPanel.TabIndex = 0;
+        // 
+        // label2
+        // 
+        label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        label2.AutoSize = true;
+        label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        label2.ForeColor = SystemColors.ButtonHighlight;
+        label2.Location = new Point(3, 18);
+        label2.Name = "label2";
+        label2.Size = new Size(130, 21);
+        label2.TabIndex = 2;
+        label2.Text = "پنل مدیریت بازیکن";
         // 
         // label1
         // 
@@ -72,7 +97,7 @@ partial class MainFrom
         label1.AutoSize = true;
         label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
         label1.ForeColor = SystemColors.ButtonHighlight;
-        label1.Location = new Point(780, 29);
+        label1.Location = new Point(789, 18);
         label1.Name = "label1";
         label1.Size = new Size(105, 21);
         label1.TabIndex = 1;
@@ -84,7 +109,7 @@ partial class MainFrom
         pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
         pictureBox1.Location = new Point(894, 0);
         pictureBox1.Name = "pictureBox1";
-        pictureBox1.Size = new Size(65, 81);
+        pictureBox1.Size = new Size(65, 53);
         pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
         pictureBox1.TabIndex = 0;
         pictureBox1.TabStop = false;
@@ -94,9 +119,9 @@ partial class MainFrom
         pnlFormLoader.BackColor = Color.FromArgb(40, 40, 40);
         pnlFormLoader.Controls.Add(splitContainer1);
         pnlFormLoader.Dock = DockStyle.Fill;
-        pnlFormLoader.Location = new Point(0, 81);
+        pnlFormLoader.Location = new Point(0, 53);
         pnlFormLoader.Name = "pnlFormLoader";
-        pnlFormLoader.Size = new Size(959, 440);
+        pnlFormLoader.Size = new Size(959, 468);
         pnlFormLoader.TabIndex = 10;
         pnlFormLoader.Paint += pnlFormLoader_Paint;
         // 
@@ -115,8 +140,11 @@ partial class MainFrom
         // 
         // splitContainer1.Panel2
         // 
+        splitContainer1.Panel2.Controls.Add(dgvPlayers);
+        splitContainer1.Panel2.Controls.Add(groupBox1);
+        splitContainer1.Panel2.Controls.Add(panel3);
         splitContainer1.Panel2.RightToLeft = RightToLeft.Yes;
-        splitContainer1.Size = new Size(959, 440);
+        splitContainer1.Size = new Size(959, 468);
         splitContainer1.SplitterDistance = 500;
         splitContainer1.TabIndex = 0;
         // 
@@ -129,7 +157,7 @@ partial class MainFrom
         dgvTeam.Name = "dgvTeam";
         dgvTeam.RowTemplate.Height = 25;
         dgvTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        dgvTeam.Size = new Size(500, 324);
+        dgvTeam.Size = new Size(500, 352);
         dgvTeam.TabIndex = 4;
         dgvTeam.SelectionChanged += dgvTeam_SelectionChanged;
         // 
@@ -138,7 +166,7 @@ partial class MainFrom
         panel1.Controls.Add(grbTeam);
         panel1.Controls.Add(panel2);
         panel1.Dock = DockStyle.Bottom;
-        panel1.Location = new Point(0, 324);
+        panel1.Location = new Point(0, 352);
         panel1.Name = "panel1";
         panel1.Size = new Size(500, 116);
         panel1.TabIndex = 5;
@@ -224,6 +252,100 @@ partial class MainFrom
         btnAddTeam.UseVisualStyleBackColor = true;
         btnAddTeam.Click += btnAddTeam_Click;
         // 
+        // dgvPlayers
+        // 
+        dgvPlayers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dgvPlayers.Dock = DockStyle.Fill;
+        dgvPlayers.Location = new Point(0, 0);
+        dgvPlayers.MultiSelect = false;
+        dgvPlayers.Name = "dgvPlayers";
+        dgvPlayers.RowTemplate.Height = 25;
+        dgvPlayers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvPlayers.Size = new Size(455, 362);
+        dgvPlayers.TabIndex = 5;
+        dgvPlayers.SelectionChanged += dgvPlayers_SelectionChanged;
+        // 
+        // groupBox1
+        // 
+        groupBox1.Controls.Add(ritxtPlayerDescription);
+        groupBox1.Dock = DockStyle.Bottom;
+        groupBox1.ForeColor = SystemColors.ButtonHighlight;
+        groupBox1.Location = new Point(0, 362);
+        groupBox1.Name = "groupBox1";
+        groupBox1.Size = new Size(455, 57);
+        groupBox1.TabIndex = 1;
+        groupBox1.TabStop = false;
+        groupBox1.Text = "توضیحات";
+        // 
+        // ritxtPlayerDescription
+        // 
+        ritxtPlayerDescription.Dock = DockStyle.Fill;
+        ritxtPlayerDescription.Location = new Point(3, 19);
+        ritxtPlayerDescription.Name = "ritxtPlayerDescription";
+        ritxtPlayerDescription.Size = new Size(449, 35);
+        ritxtPlayerDescription.TabIndex = 0;
+        ritxtPlayerDescription.Text = "";
+        // 
+        // panel3
+        // 
+        panel3.BackColor = Color.FromArgb(20, 20, 20);
+        panel3.Controls.Add(button3);
+        panel3.Controls.Add(btnEditPlayer);
+        panel3.Controls.Add(btnNewPlayer);
+        panel3.Dock = DockStyle.Bottom;
+        panel3.Location = new Point(0, 419);
+        panel3.Name = "panel3";
+        panel3.Size = new Size(455, 49);
+        panel3.TabIndex = 0;
+        // 
+        // button3
+        // 
+        button3.Dock = DockStyle.Right;
+        button3.FlatAppearance.BorderColor = Color.DarkGray;
+        button3.FlatStyle = FlatStyle.Flat;
+        button3.ForeColor = SystemColors.ButtonHighlight;
+        button3.Image = (Image)resources.GetObject("button3.Image");
+        button3.Location = new Point(191, 0);
+        button3.Name = "button3";
+        button3.Size = new Size(92, 49);
+        button3.TabIndex = 3;
+        button3.Text = "حذف بازیکن";
+        button3.TextImageRelation = TextImageRelation.ImageAboveText;
+        button3.UseVisualStyleBackColor = true;
+        button3.Click += button3_Click;
+        // 
+        // btnEditPlayer
+        // 
+        btnEditPlayer.Dock = DockStyle.Right;
+        btnEditPlayer.FlatAppearance.BorderColor = Color.DarkGray;
+        btnEditPlayer.FlatStyle = FlatStyle.Flat;
+        btnEditPlayer.ForeColor = SystemColors.ButtonHighlight;
+        btnEditPlayer.Image = (Image)resources.GetObject("btnEditPlayer.Image");
+        btnEditPlayer.Location = new Point(283, 0);
+        btnEditPlayer.Name = "btnEditPlayer";
+        btnEditPlayer.Size = new Size(89, 49);
+        btnEditPlayer.TabIndex = 2;
+        btnEditPlayer.Text = "ویرایش بازیکن";
+        btnEditPlayer.TextImageRelation = TextImageRelation.ImageAboveText;
+        btnEditPlayer.UseVisualStyleBackColor = true;
+        btnEditPlayer.Click += btnEditPlayer_Click;
+        // 
+        // btnNewPlayer
+        // 
+        btnNewPlayer.Dock = DockStyle.Right;
+        btnNewPlayer.FlatAppearance.BorderColor = Color.DarkGray;
+        btnNewPlayer.FlatStyle = FlatStyle.Flat;
+        btnNewPlayer.ForeColor = SystemColors.ButtonHighlight;
+        btnNewPlayer.Image = (Image)resources.GetObject("btnNewPlayer.Image");
+        btnNewPlayer.Location = new Point(372, 0);
+        btnNewPlayer.Name = "btnNewPlayer";
+        btnNewPlayer.Size = new Size(83, 49);
+        btnNewPlayer.TabIndex = 1;
+        btnNewPlayer.Text = "بازیکن جدید";
+        btnNewPlayer.TextImageRelation = TextImageRelation.ImageAboveText;
+        btnNewPlayer.UseVisualStyleBackColor = true;
+        btnNewPlayer.Click += btnNewPlayer_Click;
+        // 
         // MainFrom
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -242,12 +364,16 @@ partial class MainFrom
         ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
         pnlFormLoader.ResumeLayout(false);
         splitContainer1.Panel1.ResumeLayout(false);
+        splitContainer1.Panel2.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
         splitContainer1.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)dgvTeam).EndInit();
         panel1.ResumeLayout(false);
         grbTeam.ResumeLayout(false);
         panel2.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)dgvPlayers).EndInit();
+        groupBox1.ResumeLayout(false);
+        panel3.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -268,4 +394,12 @@ partial class MainFrom
     private Button btnAddTeam;
     private Button btnDeleteTeam;
     private Button btnEditTeam;
+    private Panel panel3;
+    private Label label2;
+    private GroupBox groupBox1;
+    private RichTextBox ritxtPlayerDescription;
+    private DataGridView dgvPlayers;
+    private Button button3;
+    private Button btnEditPlayer;
+    private Button btnNewPlayer;
 }

@@ -24,6 +24,6 @@ public class Team
     public string FirstColor { get; set; }
     public string SecondColor { get; set; }
     public string? Description { get; set; }
-
+    // dont be fill in layz loading
     public ICollection<Player> Players { get; set; }
 }

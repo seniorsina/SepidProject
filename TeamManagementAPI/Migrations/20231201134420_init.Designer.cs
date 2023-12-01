@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TeamManagementAPI.Migrations
 {
     [DbContext(typeof(TeamDbContext))]
-    [Migration("20231201064559_init")]
+    [Migration("20231201134420_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -34,22 +34,18 @@ namespace TeamManagementAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BirthDate")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("ContractEndDate")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("ContractStartDate")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -59,6 +55,10 @@ namespace TeamManagementAPI.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SocialNumber")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int?>("TeamId")
                         .HasColumnType("int");
@@ -128,7 +128,7 @@ namespace TeamManagementAPI.Migrations
                             FirstColor = "آبی",
                             Grade = "دسته اول",
                             Name = "تیم 2",
-                            SecondColor = "سیاه",
+                            SecondColor = "سفید",
                             TeamType = "بسکتبال"
                         },
                         new
@@ -145,50 +145,50 @@ namespace TeamManagementAPI.Migrations
                         {
                             Id = 4,
                             EstablishmentِDate = "1393/04/04",
-                            FirstColor = "مشکلی",
+                            FirstColor = "قرمز",
                             Grade = "لیگ برتر",
                             Name = "تیم 4",
-                            SecondColor = "نارنجی",
+                            SecondColor = "آبی",
                             TeamType = "فوتبال"
                         },
                         new
                         {
                             Id = 5,
                             EstablishmentِDate = "1394/05/05",
-                            FirstColor = "صورتی",
+                            FirstColor = "زرد",
                             Grade = "دسته اول",
                             Name = "تیم 5",
-                            SecondColor = "قهوه ای",
+                            SecondColor = "مشکی",
                             TeamType = "بسکتبال"
                         },
                         new
                         {
                             Id = 6,
                             EstablishmentِDate = "1395/06/06",
-                            FirstColor = "خاکستری",
+                            FirstColor = "مشکی",
                             Grade = "دسته دوم",
                             Name = "تیم 6",
-                            SecondColor = "بنفش",
+                            SecondColor = "قرمز",
                             TeamType = "والیبال"
                         },
                         new
                         {
                             Id = 7,
                             EstablishmentِDate = "1396/07/07",
-                            FirstColor = "سفید",
+                            FirstColor = "آبی",
                             Grade = "لیگ برتر",
                             Name = "تیم 7",
-                            SecondColor = "قرمز",
+                            SecondColor = "سفید",
                             TeamType = "هندبال"
                         },
                         new
                         {
                             Id = 8,
                             EstablishmentِDate = "1397/08/08",
-                            FirstColor = "سیاه",
+                            FirstColor = "سفید",
                             Grade = "دسته اول",
                             Name = "تیم 8",
-                            SecondColor = "آبی",
+                            SecondColor = "زرد",
                             TeamType = "بسکتبال"
                         },
                         new
@@ -198,7 +198,7 @@ namespace TeamManagementAPI.Migrations
                             FirstColor = "زرد",
                             Grade = "دسته دوم",
                             Name = "تیم 9",
-                            SecondColor = "سبز",
+                            SecondColor = "آبی",
                             TeamType = "والیبال"
                         },
                         new
@@ -208,7 +208,7 @@ namespace TeamManagementAPI.Migrations
                             FirstColor = "مشکی",
                             Grade = "لیگ برتر",
                             Name = "تیم 10",
-                            SecondColor = "سبز",
+                            SecondColor = "قرمز",
                             TeamType = "فوتبال"
                         });
                 });
@@ -297,7 +297,7 @@ namespace TeamManagementAPI.Migrations
                         {
                             Id = 5,
                             Fl = 1,
-                            Val = "ژرد"
+                            Val = "زرد"
                         },
                         new
                         {
@@ -351,9 +351,11 @@ namespace TeamManagementAPI.Migrations
 
             modelBuilder.Entity("Models.Model.Player", b =>
                 {
-                    b.HasOne("Models.Model.Team", null)
+                    b.HasOne("Models.Model.Team", "Team")
                         .WithMany("Players")
                         .HasForeignKey("TeamId");
+
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("Models.Modle.SysList", b =>

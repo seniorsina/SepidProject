@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.ConfigureDbContext();
 builder.Services.ConfigureTeamRepository();
 builder.Services.ConfigureSysListRepository();
+builder.Services.ConfigurePlayerRepository();
 
 var app = builder.Build();
 

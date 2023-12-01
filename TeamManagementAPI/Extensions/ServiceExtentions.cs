@@ -26,4 +26,9 @@ public static class ServiceExtentions
     {
         services.AddScoped<ISysListRepository, SysListRepository>();
     }
+
+    public static void ConfigurePlayerRepository(this IServiceCollection services)
+    {
+        services.AddScoped<IPlayerRepository, PlayerRepository>();
+    }
 }

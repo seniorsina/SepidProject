@@ -18,7 +18,7 @@ public class SysListConfiguration : IEntityTypeConfiguration<SysList>
             new SysList { Id = 2, Fl = 1, Val = "سفید" },
             new SysList { Id = 3, Fl = 1, Val = "آبی" },
             new SysList { Id = 4, Fl = 1, Val = "مشکی" },
-            new SysList { Id = 5, Fl = 1, Val = "ژرد" },
+            new SysList { Id = 5, Fl = 1, Val = "زرد" },
             new SysList { Id = 6, Fl = 2, Val = "فوتبال" },
             new SysList { Id = 7, Fl = 2, Val = "بسکتبال" },
             new SysList { Id = 8, Fl = 2, Val = "والیبال" },

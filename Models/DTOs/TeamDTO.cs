@@ -8,3 +8,10 @@
     public string SecondColor { get; set; }
     public string Description { get; set; }
 }
+
+public struct TeamIDandName
+{
+    public int Id { get; set; } 
+    public string Name { get; set; }
+
+}

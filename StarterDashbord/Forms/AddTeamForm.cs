@@ -145,7 +145,7 @@ public partial class AddTeamForm : Form
             }
             else
             {
-                MessageBox.Show($"اضافه کردن تیم با شکست مواجه شد. کد وضعیت: {response.StatusCode}");
+                MessageBox.Show($"اضافه کردن تیم با خطا مواجه شد. کد وضعیت: {response.StatusCode}");
             }
 
         }

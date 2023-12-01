@@ -20,6 +20,7 @@ public class TeamDbContext:DbContext
         modelBuilder.ApplyConfiguration(new TeamConfiguration());
         modelBuilder.ApplyConfiguration(new FlConfiguration());
         modelBuilder.ApplyConfiguration(new SysListConfiguration());
+        modelBuilder.ApplyConfiguration(new PlayerConfiguration());
     }
 
 
