@@ -155,6 +155,7 @@ partial class MainFrom
         dgvTeam.Location = new Point(0, 0);
         dgvTeam.MultiSelect = false;
         dgvTeam.Name = "dgvTeam";
+        dgvTeam.ReadOnly = true;
         dgvTeam.RowTemplate.Height = 25;
         dgvTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         dgvTeam.Size = new Size(500, 352);
@@ -259,6 +260,7 @@ partial class MainFrom
         dgvPlayers.Location = new Point(0, 0);
         dgvPlayers.MultiSelect = false;
         dgvPlayers.Name = "dgvPlayers";
+        dgvPlayers.ReadOnly = true;
         dgvPlayers.RowTemplate.Height = 25;
         dgvPlayers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         dgvPlayers.Size = new Size(455, 362);

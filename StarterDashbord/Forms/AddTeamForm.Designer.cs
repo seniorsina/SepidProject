@@ -239,8 +239,10 @@ partial class AddTeamForm
         ClientSize = new Size(514, 223);
         Controls.Add(panel2);
         Controls.Add(panel1);
+        MaximizeBox = false;
         Name = "AddTeamForm";
         RightToLeft = RightToLeft.Yes;
+        StartPosition = FormStartPosition.CenterScreen;
         Text = "تیم جدید";
         Load += AddTeamForm_Load;
         panel1.ResumeLayout(false);

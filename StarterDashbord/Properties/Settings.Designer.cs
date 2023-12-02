@@ -25,7 +25,7 @@ namespace StarterDashbord.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44366/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:5188/api")]
         public string RootUrl {
             get {
                 return ((string)(this["RootUrl"]));

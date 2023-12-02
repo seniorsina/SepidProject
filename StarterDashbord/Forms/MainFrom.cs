@@ -15,24 +15,7 @@ public partial class MainFrom : Form
 
     }
 
-    private void ClearPanel()
-    {
-        foreach (Control control in pnlFormLoader.Controls)
-        {
-            control.Dispose();
-        }
-        pnlFormLoader.Controls.Clear();
-    }
 
-    private void InitializeForm<T>(T form) where T : Form
-    {
-        form.Dock = DockStyle.Fill;
-        form.FormBorderStyle = FormBorderStyle.None;
-        form.TopLevel = false;
-        form.TopMost = true;
-        form.Show();
-        this.pnlFormLoader.Controls.Add(form);
-    }
 
     private void dvgPlayer_MouseWheel(object sender, MouseEventArgs e)
     {
@@ -54,7 +37,7 @@ public partial class MainFrom : Form
         }
         catch (Exception ex)
         {
-          //  MessageBox.Show(ex.Message);
+            //  MessageBox.Show(ex.Message);
         }
 
     }
@@ -91,16 +74,27 @@ public partial class MainFrom : Form
 
     }
 
-    private async void PrepareBothGrid()
+    private async Task PrepareBothGrid()
     {
         await LoadTeamList();
         var playerTeamID = (int)dgvTeam.SelectedRows[0].Cells["Id"].Value;
-        LoadPlayerByTeam(playerTeamID);
+      await  LoadPlayerByTeam(playerTeamID);
+        
     }
 
-    private void MainFrom_Load(object sender, EventArgs e)
+    private async void MainFrom_Load(object sender, EventArgs e)
     {
-        PrepareBothGrid();
+       await PrepareBothGrid();
+       
+        if (dgvPlayers.SelectedRows.Count > 0)
+        {
+            var row = dgvPlayers.SelectedRows[0];
+            if (row.Cells["description"].Value != null)
+            {
+                ritxtPlayerDescription.Text = row.Cells["description"].Value.ToString();
+            }
+            else ritxtTeamDescription.Text = "";
+        }
     }
 
     private async Task LoadTeamList()
@@ -116,7 +110,7 @@ public partial class MainFrom : Form
 
     public void SetTeamGridHeader(DataGridView dataGridView)
     {
-        dataGridView.Columns["id"].HeaderText = "شناسه";
+        dataGridView.Columns["id"].HeaderText = "کد تیم";
         dataGridView.Columns["name"].HeaderText = "نام";
         dataGridView.Columns["establishmentِDate"].HeaderText = "تاریخ تاسیس";
         dataGridView.Columns["teamType"].HeaderText = "نوع تیم";
@@ -154,7 +148,7 @@ public partial class MainFrom : Form
         }
     }
 
-    private  void btnAddTeam_Click(object sender, EventArgs e)
+    private void btnAddTeam_Click(object sender, EventArgs e)
     {
         AddTeamForm addTeamFrom = new AddTeamForm()
         {
@@ -241,7 +235,7 @@ public partial class MainFrom : Form
         AddPlayerForm addPlayerForm = new AddPlayerForm()
         {
             IsEditting = false,
-            StartPosition = FormStartPosition.CenterParent,
+            StartPosition =  FormStartPosition.CenterParent,
             Text = "بازیکن جدید"
         };
         addPlayerForm.Show();
@@ -276,7 +270,7 @@ public partial class MainFrom : Form
         }
     }
 
-    private async void LoadPlayerByTeam(int playerTeamID)
+    private async Task LoadPlayerByTeam(int playerTeamID)
     {
         dgvPlayers.SelectionChanged -= dgvPlayers_SelectionChanged;
         string endpoint = "/Player/" + playerTeamID.ToString();
@@ -285,6 +279,9 @@ public partial class MainFrom : Form
         dgvPlayers.DataSource = data;
         SetPlayerGridHeader(dgvPlayers);
         dgvPlayers.SelectionChanged += dgvPlayers_SelectionChanged;
+       
+
+     
     }
 
     private void SetPlayerGridHeader(DataGridView dgv)
